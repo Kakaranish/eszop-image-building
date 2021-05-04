@@ -1,2 +1,5 @@
-# Project in which the images are published
-GCP_PROJECT_ID: eszop-309916
+# This project contains Package Storage; also in this project VM images are published
+GCP_PROJECT_ID: 
+
+# Package Storage name ; stores .zip packages with apps' binaries
+GCP_PACKAGE_STORAGE: eszop-package-storage

@@ -2,6 +2,7 @@
     "variables": {
         "build_suffix": "",
         "project_id": "",
+        "package_storage_name": "",
         "image_name": ""
     },
     "builders": [
@@ -42,7 +43,7 @@
                 "apt-get update",
                 "apt-get install -y apt-utils unzip nginx",
                 "systemctl stop nginx",
-                "/scripts/download-service.sh {{user `build_suffix`}}",
+                "/scripts/download-service.sh {{user `build_suffix`}} {{user `package_storage_name`}}",
                 "unzip -o $(find /temp -regex \".*frontend.*\") -d /usr/share/nginx/html",
                 "mv -f /temp/nginx.conf /etc/nginx/sites-available/default",
                 "chmod -R 755 /usr/share/nginx/html",

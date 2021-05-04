@@ -21,6 +21,7 @@ function Build-GenericImage {
   $image_name = "eszop-$FunctionalityName-$timestamp"
   packer build `
     -var "project_id=$($config.GCP_PROJECT_ID)" `
+    -var "package_storage_name=$($config.GCP_PACKAGE_STORAGE)" `
     -var "build_suffix=$BuildSuffix" `
     -var "image_name=${image_name}" `
     $PackerEntrypointPath
