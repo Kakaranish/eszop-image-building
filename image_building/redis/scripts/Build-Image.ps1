@@ -1,5 +1,5 @@
 $repo_root = "$PSScriptRoot\..\..\.."
-Import-Module "${repo_root}\modules\Save-Cache.psm1" -Force
+Import-Module "${repo_root}\modules\Add-ToBuildHistory.psm1" -Force
 
 # ------------------------------------------------------------------------------
 
@@ -15,5 +15,5 @@ packer build `
 
 if ($LASTEXITCODE -eq 0) {
   $build_info = @{ image_name = $image_name }
-  Save-Cache -Path "$PSScriptRoot\.last_build" -Content $build_info
+  Add-ToBuildHistory -Path "$PSScriptRoot\.build_history" -Content $build_info
 }

@@ -1,4 +1,4 @@
-Import-Module "$PSScriptRoot\Save-Cache.psm1" -Force
+Import-Module "$PSScriptRoot\Add-ToBuildHistory.psm1" -Force
 
 function Build-GenericImage {
   param(
@@ -12,7 +12,7 @@ function Build-GenericImage {
     [string] $FunctionalityName,
   
     [Parameter(Mandatory = $true)]
-    [string] $CachePath
+    [string] $BuildHistoryPath
   )
 
   $repo_root = "$PSScriptRoot\.."
@@ -22,6 +22,7 @@ function Build-GenericImage {
   packer build `
     -var "project_id=$($config.GCP_PROJECT_ID)" `
     -var "package_storage_name=$($config.GCP_PACKAGE_STORAGE)" `
+    -var "functionality=${FunctionalityName}" `
     -var "build_suffix=$BuildSuffix" `
     -var "image_name=${image_name}" `
     $PackerEntrypointPath
@@ -31,7 +32,8 @@ function Build-GenericImage {
       build_suffix = $BuildSuffix; 
       image_name   = $image_name
     }
-    Save-Cache -Path $CachePath -Content $build_info
+  
+    Add-ToBuildHistory -Path $BuildHistoryPath -Content $build_info
   }
 }
 

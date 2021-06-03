@@ -12,4 +12,4 @@ Build-GenericImage `
   -BuildSuffix $BuildSuffix `
   -PackerEntrypointPath "$PSScriptRoot\..\eszop_frontend.json" `
   -FunctionalityName "frontend" `
-  -CachePath ".last_build"
+  -BuildHistoryPath ".build_history"
